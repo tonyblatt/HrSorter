@@ -10,7 +10,7 @@ From the root folder of the project, execute:
 ### Execution
 
 From the root folder of the project, execute:
- java -jar target/HrSorter-0.0.1-SNAPSHOT.war step1 <Path to input file> <Sort Option>
+ java -jar target/HrSorter-0.0.1-SNAPSHOT.war step1 (Path to input file) (Sort Option)
 
 ### Notes
 - There are multiple valid input files in the src/main/resources folder.
