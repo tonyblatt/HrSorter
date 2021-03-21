@@ -1,6 +1,6 @@
 # HrSorter
 
-Developer Note: Requirements indicate that the input date is supposed to be M/D/YYYY. This causes the day field to be "Day of the Year" instead of the usual "Day of the Month". I have preserved this requirement in the code and in the example files. To change the code to use "Day of the Month" instead of "Day of the Year", alter DATE_FORMAT in LineParser.java to take in "M/d/YYYY" instead of "M/D/YYYY". (The test files should also be updated, if you update LineParser.)
+Developer Note: Requirements indicate that the input date is supposed to be M/D/YYYY. This causes the day field to be "Day of the Year" instead of the usual "Day of the Month". I have preserved this requirement in the code and in the example files. To change the code to use "Day of the Month" instead of "Day of the Year", alter DATE_FORMAT in LineParser.java to take in "M/d/YYYY" instead of "M/D/YYYY". (The test files should also be updated, if you update LineParser.) Using the "Day of the Year" instead of "Day of the Month" also seems to render the month part of the input as extraneous because the "Day of the Year" tells the parser what month the date is in regardless of the actual input value. However, a month value is still necessary for the date to get parsed (though it is not used when determining what the Date of Birth will actually be).
 
 ## Step 1
 
@@ -40,4 +40,5 @@ From the root folder of the project, execute:
 - Get lines from sorted by email (sorts by email descending followed by last name ascending) by making a GET call to localhost:8080/records/email
 - Get lines from sorted by date of birth (sorts by date of birth ascending) by making a GET call to localhost:8080/records/birthdate
 - Get lines from sorted by last name (sorts by last name descending) by making a GET call to localhost:8080/records/name
+- Improperly formatted input lines are skipped.
 
