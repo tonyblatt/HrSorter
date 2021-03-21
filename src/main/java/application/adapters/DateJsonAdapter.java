@@ -10,6 +10,12 @@ import com.google.gson.stream.JsonWriter;
 
 import application.parser.LineParser;
 
+/**
+ * Adapter for converting Dates to Json.
+ * 
+ * @author tony
+ *
+ */
 public class DateJsonAdapter extends TypeAdapter<LocalDate> {
 
 	@Override

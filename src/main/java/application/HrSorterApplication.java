@@ -8,11 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-//import org.springframework.boot.SpringApplication;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.google.gson.Gson;
 
+import application.constants.HrSorterConstants;
 import application.model.Person;
 import application.parser.LineParser;
 import application.parser.LineParser.InvalidNumberOfItemsInLineException;
@@ -23,10 +24,28 @@ import application.sorter.SortOptions;
 public class HrSorterApplication {
 
 	public static void main(String[] args) throws IOException {
-//		SpringApplication.run(HrSorterApplication.class, args);
-		if ("step1".equals(args[0])) {
+		if (args.length == 0) {
+			printUsage();
+		} else if ("step1".equals(args[0])) {
+			if (args.length != 3) {
+				printUsage();
+				return;
+			}
 			step1(args);
+		} else if ("step2".equals(args[0])) {
+			SpringApplication.run(HrSorterApplication.class, args);
+		} else {
+			printUsage();
 		}
+	}
+
+	/**
+	 * Prints the correct usage of this application.
+	 */
+	private static void printUsage() {
+		System.out.println("Improper usage. Correct usages:");
+		System.out.println("java -jar target/HrSorter-0.0.1-SNAPSHOT.war step1 <Path to input file> <Sort Option>");
+		System.out.println("java -jar target/HrSorter-0.0.1-SNAPSHOT.war step2");
 	}
 
 	/**
@@ -83,9 +102,9 @@ public class HrSorterApplication {
 				Person person = LineParser.parseLine(i, line, LineParser.findDelimiter(line));
 				parsed.add(person);
 			} catch (IllegalArgumentException e) {
-				System.out.println("Could not parse date from line: " + line + "  correct format is M/D/YYYY");
+				System.out.println(String.format(HrSorterConstants.INVALID_DATE_FORMAT, line));
 			} catch (InvalidNumberOfItemsInLineException e) {
-				System.out.println("Could not parse line: " + line + " , should have 5 properties.");
+				System.out.println(String.format(HrSorterConstants.INVALID_NUMBER_OF_ITEMS, line));
 			}
 		}
 		PersonSorter.sortPeople(parsed, option);

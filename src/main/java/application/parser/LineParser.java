@@ -16,7 +16,7 @@ import application.model.Person;
  */
 public class LineParser {
 
-	public static final DateTimeFormatter DATE_FORMAT = DateTimeFormat.forPattern("M/d/YYYY");
+	public static final DateTimeFormatter DATE_FORMAT = DateTimeFormat.forPattern("M/D/YYYY");
 
 	/**
 	 * Determines the delimiter being used by a specific line.
